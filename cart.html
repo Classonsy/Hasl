@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Корзина - HASL</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dark-theme.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    .cart-page {
+      background: var(--gray);
+    }
+    
+    .dark-theme .cart-item {
+      background: var(--gray);
+    }
+    
+    .dark-theme .cart-total {
+      background: var(--white);
+    }
+  </style>
+</head>
+<body class="light-theme">
+  <header>
+    <nav class="main-nav">
+      <div class="logo">
+        <img src="Логотип.svg" alt="HASL Logo" class="logo-img light-logo">
+        <img src="Логотип для темной темы.png" alt="HASL Logo Dark" class="logo-img dark-logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" data-translate="home">Главная</a></li>
+        <li><a href="catalog.html" data-translate="catalog">Каталог</a></li>
+        <li><a href="about.html" data-translate="about">О нас</a></li>
+        <li><a href="cart.html" data-translate="cart">Корзина</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button id="lang-toggle" class="lang-toggle">RU</button>
+        <button id="theme-toggle" class="theme-toggle">
+          <svg class="theme-icon" viewBox="0 0 24 24">
+            <path class="sun" d="M12 2v2m0 16v2M4 12H2m20 0h-2m-2.05-6.95L19 4m-14 14l1.05-1.05M4 20l1.05-1.05m14-14L18 6M6.34 17.66l-1.41 1.41M17.66 6.34l1.41-1.41M6.34 6.34L4.93 4.93"/>
+            <circle class="moon" cx="12" cy="12" r="5"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="cart-page">
+    <h1 class="section-title">
+      <span class="title-line"></span>
+      <span data-translate="cart">Корзина</span>
+      <span class="title-line"></span>
+    </h1>
+
+    <div id="cart-container" class="cart-container">
+      <!-- Cart items will be dynamically inserted here -->
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4 data-translate="aboutUs">О нас</h4>
+        <p>HASL - ваш проводник в мире стильной обуви</p>
+      </div>
+      <div class="footer-section">
+        <h4 data-translate="contacts">Контакты</h4>
+        <div class="contact-links">
+          <a href="mailto:info@hasl.com">info@hasl.com</a>
+          <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/lang.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

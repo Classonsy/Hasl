@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог - HASL</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dark-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+  <header>
+    <nav class="main-nav">
+      <div class="logo">
+        <img src="Логотип.svg" alt="HASL Logo" class="logo-img light-logo">
+        <img src="Логотип для темной темы.png" alt="HASL Logo Dark" class="logo-img dark-logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" data-translate="home">Главная</a></li>
+        <li><a href="catalog.html" data-translate="catalog">Каталог</a></li>
+        <li><a href="about.html" data-translate="about">О нас</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button id="lang-toggle" class="lang-toggle">RU</button>
+        <button id="theme-toggle" class="theme-toggle">
+          <svg class="theme-icon" viewBox="0 0 24 24">
+            <path class="sun" d="M12 2v2m0 16v2M4 12H2m20 0h-2m-2.05-6.95L19 4m-14 14l1.05-1.05M4 20l1.05-1.05m14-14L18 6M6.34 17.66l-1.41 1.41M17.66 6.34l1.41-1.41M6.34 6.34L4.93 4.93"/>
+            <circle class="moon" cx="12" cy="12" r="5"/>
+          </svg>
+        </button>
+        <a href="cart.html" class="cart-button">
+          <svg class="cart-icon" viewBox="0 0 24 24">
+            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+          </svg>
+          <span id="cart-count" class="cart-count">0</span>
+          <span data-translate="cart">Корзина</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="catalog-section">
+      <h1 class="section-title">
+        <span class="title-line"></span>
+        Каталог кроссовок
+        <span class="title-line"></span>
+      </h1>
+      <div class="product-grid catalog-grid">
+        <div class="product-card">
+          <div class="card-inner">
+            <img src="Nike Air Jordan 4.png" alt="Nike Air Jordan 4">
+            <h3>Nike Air Jordan 4</h3>
+            <p>14 999 ₽</p>
+            <button class="add-to-cart">В корзину</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="card-inner">
+            <img src="Jordan 11 retro.png" alt="Jordan 11 Retro">
+            <h3>Jordan 11 Retro</h3>
+            <p>16 999 ₽</p>
+            <button class="add-to-cart">В корзину</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="card-inner">
+            <img src="Nike Dunk low.png" alt="Nike Dunk Low">
+            <h3>Nike Dunk Low</h3>
+            <p>12 999 ₽</p>
+            <button class="add-to-cart">В корзину</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="card-inner">
+            <img src="Nike Air Jordan 5.png" alt="Nike Air Jordan 5">
+            <h3>Nike Air Jordan 5</h3>
+            <p>17 999 ₽</p>
+            <button class="add-to-cart">В корзину</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="card-inner">
+            <img src="Nike AIR max 97.png" alt="Nike Air Max 97">
+            <h3>Nike Air Max 97</h3>
+            <p>15 999 ₽</p>
+            <button class="add-to-cart">В корзину</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="card-inner">
+            <img src="Vans old school (1).png" alt="Vans Old School">
+            <h3>Vans Old School</h3>
+            <p>7 999 ₽</p>
+            <button class="add-to-cart">В корзину</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="card-inner">
+            <img src="Balenciaga track.png" alt="Balenciaga Track">
+            <h3>Balenciaga Track</h3>
+            <p>89 999 ₽</p>
+            <button class="add-to-cart">В корзину</button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="card-inner">
+            <img src="RAF SIMONS OZWEGO.png" alt="RAF SIMONS OZWEGO">
+            <h3>RAF SIMONS OZWEGO</h3>
+            <p>45 999 ₽</p>
+            <button class="add-to-cart">В корзину</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>О нас</h4>
+        <p>HASL - ваш проводник в мире стильной обуви</p>
+      </div>
+      <div class="footer-section">
+        <h4>Контакты</h4>
+        <p>Email: info@hasl.com</p>
+        <p>Телефон: +7 (999) 123-45-67</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/lang.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
