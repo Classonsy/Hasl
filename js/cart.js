@@ -1,8 +1,14 @@
-class Cart {
+// Cart singleton implementation
+let cartInstance = null;
+
+export class Cart {
   constructor() {
+    if (cartInstance) {
+      return cartInstance;
+    }
+    cartInstance = this;
     this.items = [];
     this.loadFromLocalStorage();
-    this.updateUI();
   }
 
   loadFromLocalStorage() {
@@ -10,36 +16,37 @@ class Cart {
     if (savedCart) {
       this.items = JSON.parse(savedCart);
     }
+    this.updateUI();
   }
 
   saveToLocalStorage() {
     localStorage.setItem('cart', JSON.stringify(this.items));
+    this.updateUI();
   }
 
   addItem(product) {
     const existingItem = this.items.find(item => 
       item.id === product.id && 
+      item.name === product.name &&
       item.size === product.size && 
       item.color === product.color
     );
 
     if (existingItem) {
-      existingItem.quantity += product.quantity || 1;
+      existingItem.quantity = (existingItem.quantity || 1) + 1;
     } else {
       this.items.push({
         ...product,
-        quantity: product.quantity || 1
+        quantity: 1
       });
     }
 
     this.saveToLocalStorage();
-    this.updateUI();
   }
 
   removeItem(itemId) {
     this.items = this.items.filter(item => item.id !== itemId);
     this.saveToLocalStorage();
-    this.updateUI();
   }
 
   updateQuantity(itemId, quantity) {
@@ -50,7 +57,6 @@ class Cart {
       } else {
         item.quantity = quantity;
         this.saveToLocalStorage();
-        this.updateUI();
       }
     }
   }
@@ -58,7 +64,6 @@ class Cart {
   clear() {
     this.items = [];
     this.saveToLocalStorage();
-    this.updateUI();
   }
 
   getTotalAmount() {
@@ -66,13 +71,11 @@ class Cart {
   }
 
   updateUI() {
-    // Update cart count
     const cartCount = document.getElementById('cart-count');
     if (cartCount) {
       cartCount.textContent = this.items.reduce((total, item) => total + item.quantity, 0);
     }
 
-    // Update cart container if on cart page
     const cartContainer = document.getElementById('cart-container');
     if (cartContainer) {
       cartContainer.innerHTML = this.renderCart();
@@ -81,7 +84,12 @@ class Cart {
 
   renderCart() {
     if (this.items.length === 0) {
-      return `<p class="empty-cart" data-translate="emptyCart">Корзина пуста</p>`;
+      return `
+        <div class="empty-cart-container">
+          <p class="empty-cart" data-translate="emptyCart">Корзина пуста</p>
+          <a href="catalog.html" class="return-to-catalog">Перейти в каталог</a>
+        </div>
+      `;
     }
 
     return `
@@ -91,45 +99,41 @@ class Cart {
             <img src="${item.image}" alt="${item.name}">
             <div class="item-details">
               <h3>${item.name}</h3>
-              <p data-translate="size">Размер: ${item.size}</p>
-              <p data-translate="color">Цвет: ${item.color}</p>
-              <p data-translate="price">Цена: ${item.price} ₽</p>
-              <div class="quantity-controls">
-                <button onclick="cart.updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
-                <span>${item.quantity}</span>
-                <button onclick="cart.updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+              <div class="item-info">
+                <p data-translate="size">Размер: ${item.size}</p>
+                <p data-translate="color">Цвет: ${item.color}</p>
+                <p class="item-price" data-translate="price">Цена: ${item.price} ₽</p>
               </div>
-              <button class="remove-item" onclick="cart.removeItem(${item.id})" data-translate="remove">Удалить</button>
+              <div class="quantity-controls">
+                <button class="quantity-btn minus" onclick="cart.updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                <span class="quantity">${item.quantity}</span>
+                <button class="quantity-btn plus" onclick="cart.updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+              </div>
+              <button class="remove-item" onclick="cart.removeItem(${item.id})" data-translate="remove">
+                <svg viewBox="0 0 24 24" class="remove-icon">
+                  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+                Удалить
+              </button>
             </div>
           </div>
         `).join('')}
         <div class="cart-total">
           <p data-translate="total">Итого: ${this.getTotalAmount()} ₽</p>
-          <button class="checkout-button" data-translate="checkout">Оформить заказ</button>
+          <a href="checkout.html" class="checkout-button" data-translate="checkout">
+            <svg class="checkout-icon" viewBox="0 0 24 24">
+              <path d="M9 20c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm8-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-9.8-3.2c0-.1.1-.2.2-.2h12.2c.1 0 .2.1.2.2v.8c0 .1-.1.2-.2.2H7.4c-.1 0-.2-.1-.2-.2v-.8zM19 4H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H5V6h14v12z"/>
+            </svg>
+            Оформить заказ
+          </a>
         </div>
       </div>
     `;
   }
 }
 
-// Initialize cart
+// Initialize cart singleton
 const cart = new Cart();
 
-// Add event listeners to all add to cart buttons
-document.addEventListener('DOMContentLoaded', () => {
-  const addToCartButtons = document.querySelectorAll('.add-to-cart');
-  addToCartButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      const card = e.target.closest('.product-card');
-      const product = {
-        id: parseInt(card.dataset.productId),
-        name: card.querySelector('h3').textContent,
-        price: parseFloat(card.querySelector('p').textContent.replace(/[^\d]/g, '')),
-        image: card.querySelector('img').src,
-        size: card.dataset.size || 'M',
-        color: card.dataset.color || 'Black'
-      };
-      cart.addItem(product);
-    });
-  });
-});
+// Make cart globally available
+window.cart = cart;

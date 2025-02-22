@@ -7,13 +7,19 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/dark-theme.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/checkout.css">
 </head>
 <body class="light-theme">
   <header>
     <nav class="main-nav">
       <div class="logo">
-        <img src="Логотип.svg" alt="HASL Logo" class="logo-img light-logo">
-        <img src="Логотип для темной темы.png" alt="HASL Logo Dark" class="logo-img dark-logo">
+        <img src="/Логотип.svg" alt="HASL Logo" class="logo-img light-logo">
+        <img src="/Логотип для темной темы.png" alt="HASL Logo Dark" class="logo-img dark-logo">
+        <div class="web-line"></div>
+        <svg class="spidey" viewBox="0 0 100 100">
+          <!-- Same SVG content as in index.html -->
+        </svg>
       </div>
       <ul class="nav-links">
         <li><a href="index.html" data-translate="home">Главная</a></li>
@@ -46,66 +52,75 @@
         Каталог кроссовок
         <span class="title-line"></span>
       </h1>
+      
+      <div class="filters">
+        <button class="filter-button active" data-brand="all">Все</button>
+        <button class="filter-button" data-brand="nike">Nike</button>
+        <button class="filter-button" data-brand="jordan">Jordan</button>
+        <button class="filter-button" data-brand="balenciaga">Balenciaga</button>
+        <button class="filter-button" data-brand="vans">Vans</button>
+      </div>
+
       <div class="product-grid catalog-grid">
-        <div class="product-card">
+        <div class="product-card" data-brand="nike">
           <div class="card-inner">
-            <img src="Nike Air Jordan 4.png" alt="Nike Air Jordan 4">
+            <img src="/Nike Air Jordan 4.png" alt="Nike Air Jordan 4">
             <h3>Nike Air Jordan 4</h3>
             <p>14 999 ₽</p>
             <button class="add-to-cart">В корзину</button>
           </div>
         </div>
-        <div class="product-card">
+        <div class="product-card" data-brand="jordan">
           <div class="card-inner">
-            <img src="Jordan 11 retro.png" alt="Jordan 11 Retro">
+            <img src="/Jordan 11 retro.png" alt="Jordan 11 Retro">
             <h3>Jordan 11 Retro</h3>
             <p>16 999 ₽</p>
             <button class="add-to-cart">В корзину</button>
           </div>
         </div>
-        <div class="product-card">
+        <div class="product-card" data-brand="nike">
           <div class="card-inner">
-            <img src="Nike Dunk low.png" alt="Nike Dunk Low">
+            <img src="/Nike Dunk low.png" alt="Nike Dunk Low">
             <h3>Nike Dunk Low</h3>
             <p>12 999 ₽</p>
             <button class="add-to-cart">В корзину</button>
           </div>
         </div>
-        <div class="product-card">
+        <div class="product-card" data-brand="nike">
           <div class="card-inner">
-            <img src="Nike Air Jordan 5.png" alt="Nike Air Jordan 5">
+            <img src="/Nike Air Jordan 5.png" alt="Nike Air Jordan 5">
             <h3>Nike Air Jordan 5</h3>
             <p>17 999 ₽</p>
             <button class="add-to-cart">В корзину</button>
           </div>
         </div>
-        <div class="product-card">
+        <div class="product-card" data-brand="nike">
           <div class="card-inner">
-            <img src="Nike AIR max 97.png" alt="Nike Air Max 97">
+            <img src="/Nike AIR max 97.png" alt="Nike Air Max 97">
             <h3>Nike Air Max 97</h3>
             <p>15 999 ₽</p>
             <button class="add-to-cart">В корзину</button>
           </div>
         </div>
-        <div class="product-card">
+        <div class="product-card" data-brand="vans">
           <div class="card-inner">
-            <img src="Vans old school (1).png" alt="Vans Old School">
+            <img src="/Vans old school (1).png" alt="Vans Old School">
             <h3>Vans Old School</h3>
             <p>7 999 ₽</p>
             <button class="add-to-cart">В корзину</button>
           </div>
         </div>
-        <div class="product-card">
+        <div class="product-card" data-brand="balenciaga">
           <div class="card-inner">
-            <img src="Balenciaga track.png" alt="Balenciaga Track">
+            <img src="/Balenciaga track.png" alt="Balenciaga Track">
             <h3>Balenciaga Track</h3>
             <p>89 999 ₽</p>
             <button class="add-to-cart">В корзину</button>
           </div>
         </div>
-        <div class="product-card">
+        <div class="product-card" data-brand="nike">
           <div class="card-inner">
-            <img src="RAF SIMONS OZWEGO.png" alt="RAF SIMONS OZWEGO">
+            <img src="/RAF SIMONS OZWEGO.png" alt="RAF SIMONS OZWEGO">
             <h3>RAF SIMONS OZWEGO</h3>
             <p>45 999 ₽</p>
             <button class="add-to-cart">В корзину</button>
@@ -133,8 +148,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="js/theme.js"></script>
   <script src="js/animations.js"></script>
-  <script src="js/lang.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/main.js"></script>
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/cart.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/filters.js"></script>
 </body>
 </html>

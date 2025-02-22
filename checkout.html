@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оформление заказа - HASL</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dark-theme.css">
+  <link rel="stylesheet" href="css/checkout.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+  <header>
+    <nav class="main-nav">
+      <div class="logo">
+        <img src="/Логотип.svg" alt="HASL Logo" class="logo-img light-logo">
+        <img src="/Логотип для темной темы.png" alt="HASL Logo Dark" class="logo-img dark-logo">
+        <div class="web-line"></div>
+        <div class="spidey"></div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="catalog.html">Каталог</a></li>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="cart.html">Корзина</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button id="lang-toggle" class="lang-toggle">RU</button>
+        <button id="theme-toggle" class="theme-toggle">
+          <svg class="theme-icon" viewBox="0 0 24 24">
+            <path class="sun" d="M12 2v2m0 16v2M4 12H2m20 0h-2m-2.05-6.95L19 4m-14 14l1.05-1.05M4 20l1.05-1.05m14-14L18 6M6.34 17.66l-1.41 1.41M17.66 6.34l1.41-1.41M6.34 6.34L4.93 4.93"/>
+            <circle class="moon" cx="12" cy="12" r="5"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="checkout-page">
+    <div class="checkout-container">
+      <h1 class="section-title">
+        <span class="title-line"></span>
+        Оформление заказа
+        <span class="title-line"></span>
+      </h1>
+
+      <div class="checkout-grid">
+        <div class="checkout-form-container">
+          <form id="checkout-form" class="checkout-form">
+            <div class="form-group">
+              <label for="name">Имя</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Телефон</label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+              <label for="address">Адрес доставки</label>
+              <textarea id="address" name="address" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="payment">Способ оплаты</label>
+              <select id="payment" name="payment" required>
+                <option value="">Выберите способ оплаты</option>
+                <option value="card">Банковская карта</option>
+                <option value="cash">Наличные при получении</option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <div class="order-summary">
+          <h2>Ваш заказ</h2>
+          <div id="order-items">
+            <!-- Order items will be inserted here dynamically -->
+          </div>
+          <div class="order-total">
+            <span>Итого:</span>
+            <span id="total-amount">0 ₽</span>
+          </div>
+          <button id="confirm-order" class="confirm-order-button">
+            Подтвердить заказ
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>О нас</h4>
+        <p>HASL - ваш проводник в мире стильной обуви</p>
+      </div>
+      <div class="footer-section">
+        <h4>Контакты</h4>
+        <p>Email: info@hasl.com</p>
+        <p>Телефон: +7 (999) 123-45-67</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/theme.js"></script>
+  <script src="js/lang.js"></script>
+  <script type="module">
+    import { Cart } from './js/cart.js';
+    
+    const cart = new Cart();
+    
+    // Populate order summary
+    function updateOrderSummary() {
+      const orderItems = document.getElementById('order-items');
+      const totalAmount = document.getElementById('total-amount');
+      
+      orderItems.innerHTML = cart.items.map(item => `
+        <div class="order-item">
+          <div class="item-info">
+            <img src="${item.image}" alt="${item.name}" class="item-thumbnail">
+            <div class="item-details">
+              <h3>${item.name}</h3>
+              <p>Размер: ${item.size}</p>
+              <p>Количество: ${item.quantity}</p>
+            </div>
+          </div>
+          <div class="item-price">${item.price * item.quantity} ₽</div>
+        </div>
+      `).join('');
+      
+      totalAmount.textContent = `${cart.getTotalAmount()} ₽`;
+    }
+
+    // Handle order submission
+    document.getElementById('confirm-order').addEventListener('click', async (e) => {
+      e.preventDefault();
+      
+      const form = document.getElementById('checkout-form');
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      try {
+        const formData = new FormData(form);
+        const orderData = {
+          customerName: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          address: formData.get('address'),
+          paymentMethod: formData.get('payment'),
+          items: cart.items,
+          totalAmount: cart.getTotalAmount()
+        };
+
+        // Here you would typically send the order to your backend
+        // For now, we'll simulate a successful order
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Clear cart and show success message
+        cart.clear();
+        showOrderSuccess();
+      } catch (error) {
+        console.error('Order submission failed:', error);
+        // Show error message
+      }
+    });
+
+    function showOrderSuccess() {
+      const container = document.querySelector('.checkout-container');
+      container.innerHTML = `
+        <div class="order-success">
+          <h2>Заказ успешно оформлен!</h2>
+          <p>Мы отправили подтверждение на ваш email.</p>
+          <a href="index.html" class="return-home">Вернуться на главную</a>
+        </div>
+      `;
+    }
+
+    // Initialize page
+    updateOrderSummary();
+  </script>
+</body>
+</html>
