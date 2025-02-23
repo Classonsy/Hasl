@@ -1,0 +1,55 @@
+body.dark-theme {
+  --white: #121212;
+  --black: #FFFFFF;
+  --gray: #2A2A2A;
+  
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.dark-theme .main-nav {
+  background-color: var(--white);
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .nav-links a {
+  color: var(--black);
+}
+
+.dark-theme .product-card .card-inner {
+  background-color: var(--gray);
+}
+
+.dark-theme .theme-icon {
+  stroke: var(--black);
+}
+
+.dark-theme .logo-img.light-logo {
+  display: none;
+}
+
+.dark-theme .logo-img.dark-logo {
+  display: block;
+}
+
+.dark-theme .card-inner {
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .filter-button {
+  border-color: var(--primary-ruby);
+  color: var(--primary-ruby);
+  box-shadow: 0 2px 8px rgba(255, 140, 0, 0.15);
+}
+
+.dark-theme .filter-badge {
+  background: var(--primary-orange);
+  color: var(--white);
+}
+
+.dark-theme .filter-button:hover,
+.dark-theme .filter-button.active {
+  background-color: var(--primary-ruby);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+}

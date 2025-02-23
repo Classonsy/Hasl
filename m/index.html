@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HASL - Магазин кроссовок</title>
+  <link rel="stylesheet" href="css/mobile.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="mobile-nav">
+    <button class="menu-toggle">☰</button>
+    <a href="index.html">
+      <img src="Логотип.svg" alt="HASL Logo" class="mobile-logo">
+    </a>
+    <a href="cart.html" class="cart-link">
+      <span class="cart-count">0</span>
+      🛒
+    </a>
+  </nav>
+
+  <div class="side-menu">
+    <div class="menu-header">
+      <h2>Меню</h2>
+      <button class="close-menu">×</button>
+    </div>
+    <ul class="menu-links">
+      <li><a href="index.html" data-translate="home">Главная</a></li>
+      <li><a href="catalog.html" data-translate="catalog">Каталог</a></li>
+      <li><a href="news.html" data-translate="news">Новости</a></li>
+      <li><a href="about.html" data-translate="about">О нас</a></li>
+      <li><a href="cart.html" data-translate="cart">Корзина</a></li>
+    </ul>
+    <div class="menu-controls">
+      <button id="lang-toggle" class="lang-toggle">RU</button>
+      <button id="theme-toggle" class="theme-toggle">🌓</button>
+    </div>
+  </div>
+
+  <div class="menu-overlay"></div>
+
+  <main>
+    <section class="hero">
+      <h1>Найди свой стиль</h1>
+      <p>Коллекция эксклюзивных кроссовок</p>
+      <a href="catalog.html" class="cta-button">Смотреть коллекцию</a>
+    </section>
+
+    <section class="featured-products">
+      <h2>Популярные модели</h2>
+	  
+      <div class="product-grid">
+		<div class="product-card">
+          <div class="card-inner">
+            <img src="Balenciaga track.png" alt="Balenciaga Track">
+            <h3>Balenciaga Track</h3>
+            <p>89 999 ₽</p>
+            <button class="add-to-cart">В корзину</button>
+          </div>
+		  
+		  <div class="product-card">
+          <div class="card-inner">
+            <img src="Vans old school (1).png" alt="Vans Old School">
+            <h3>Vans Old School</h3>
+            <p>7 999 ₽</p>
+            <button class="add-to-cart">В корзину</button>
+          </div>
+		  
+		  <div class="product-card">
+          <div class="card-inner">
+            <img src="Jordan 11 retro.png" alt="Jordan 11 Retro">
+            <h3>Jordan 11 Retro</h3>
+            <p>16 999 ₽</p>
+            <button class="add-to-cart">В корзину</button>
+          </div>
+        <!-- Product cards here -->
+      </div>
+      <a href="catalog.html" class="view-all">Смотреть все</a>
+    </section>
+  </main>
+
+  <script src="../js/cart.js" type="module"></script>
+  <script src="../js/lang.js"></script>
+  <script src="js/mobile.js"></script>
+  <script src="js/mobile-detect.js"></script>
+</body>
+</html>
