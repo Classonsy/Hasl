@@ -67,4 +67,35 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+  // News cards animation
+  gsap.from('.news-card', {
+    duration: 0.8,
+    y: 50,
+    opacity: 0,
+    stagger: 0.2,
+    scrollTrigger: {
+      trigger: '.news-grid',
+      start: 'top center+=100',
+      toggleActions: 'play none none reverse'
+    }
+  });
+
+  // News images hover effect
+  const newsImages = document.querySelectorAll('.news-image');
+  newsImages.forEach(image => {
+    image.addEventListener('mouseenter', () => {
+      gsap.to(image.querySelector('img'), {
+        scale: 1.1,
+        duration: 0.3
+      });
+    });
+
+    image.addEventListener('mouseleave', () => {
+      gsap.to(image.querySelector('img'), {
+        scale: 1,
+        duration: 0.3
+      });
+    });
+  });
 });

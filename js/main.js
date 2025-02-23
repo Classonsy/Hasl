@@ -9,26 +9,64 @@ document.addEventListener('DOMContentLoaded', () => {
   addToCartButtons.forEach(button => {
     // Remove old listeners first
     button.removeEventListener('click', handleAddToCart);
-    button.addEventListener('click', handleAddToCart, { once: true }); // Add once:true to prevent multiple triggers
+    
+    // Create size selector if it doesn't exist
+    const card = button.closest('.product-card');
+    if (!card.querySelector('.size-selector-container')) {
+      const sizes = ['36', '37', '38', '39', '40', '41', '42', '43', '44', '45'];
+      const sizeContainer = document.createElement('div');
+      sizeContainer.className = 'size-selector-container';
+      sizeContainer.innerHTML = `
+        <div class="size-label">Выберите размер:</div>
+        <div class="size-options">
+          ${sizes.map(size => `
+            <label class="size-option">
+              <input type="radio" name="size-${card.dataset.productId || Date.now()}" value="${size}">
+              <span class="size-button">${size}</span>
+            </label>
+          `).join('')}
+        </div>
+      `;
+      button.insertAdjacentElement('beforebegin', sizeContainer);
+    }
+    
+    button.addEventListener('click', handleAddToCart, { once: true }); 
   });
 });
 
 function handleAddToCart(e) {
-  e.preventDefault(); // Prevent any default behavior
-  e.stopPropagation(); // Stop event propagation
+  e.preventDefault();
+  e.stopPropagation();
   
   const card = e.target.closest('.product-card');
   if (!card) return;
   
+  const selectedSize = card.querySelector('input[type="radio"]:checked');
+  
+  if (!selectedSize) {
+    alert('Пожалуйста, выберите размер');
+    return;
+  }
+  
   const product = {
-    id: parseInt(card.dataset.productId) || Date.now(), // Fallback for demo
+    id: parseInt(card.dataset.productId) || Date.now(),
     name: card.querySelector('h3').textContent,
     price: parseFloat(card.querySelector('p').textContent.replace(/[^\d]/g, '')),
     image: card.querySelector('img').src,
-    size: card.dataset.size || 'M',
+    size: selectedSize.value,
     color: card.dataset.color || 'Black'
   };
   
   const cart = new Cart();
   cart.addItem(product);
+  
+  // Visual feedback
+  const button = e.target;
+  button.textContent = 'Добавлено ✓';
+  button.classList.add('added');
+  
+  setTimeout(() => {
+    button.textContent = 'В корзину';
+    button.classList.remove('added');
+  }, 2000);
 }

@@ -20,7 +20,8 @@ const translations = {
     collection: "Коллекция эксклюзивных кроссовок",
     contacts: "Контакты",
     email: "Email",
-    phone: "Телефон"
+    phone: "Телефон",
+    news: "Новости",
   },
   en: {
     home: "Home",
@@ -42,7 +43,8 @@ const translations = {
     collection: "Exclusive Sneakers Collection",
     contacts: "Contacts",
     email: "Email",
-    phone: "Phone"
+    phone: "Phone",
+    news: "News",
   }
 };
 

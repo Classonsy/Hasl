@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Корзина - HASL</title>
-  <link rel="stylesheet" href="../css/mobile.css">
+  <title>Новости - HASL</title>
+  <link rel="stylesheet" href="css/mobile.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <nav class="mobile-nav">
     <button class="menu-toggle">☰</button>
     <img src="img/Логотип.svg" alt="HASL Logo" class="mobile-logo">
-    <span class="cart-count">0</span>
+    <a href="cart.html" class="cart-link">
+      <span class="cart-count">0</span>
+      🛒
+    </a>
   </nav>
 
   <div class="side-menu">
@@ -26,10 +29,19 @@
   <div class="menu-overlay"></div>
 
   <main>
-    <section class="cart">
-      <h1>Корзина</h1>
-      <div id="cart-container">
-        <!-- Cart items will be dynamically inserted here -->
+    <section class="news">
+      <h1>Новости</h1>
+      <div class="news-feed">
+        <article class="news-item featured">
+          <img src="img/Salehe Bembury X New Balance 2002R Peace Be.png" alt="Salehe Bembury X New Balance">
+          <div class="news-content">
+            <span class="date">15 ноября 2023</span>
+            <h2>Salehe Bembury x New Balance 2002R "Peace Be"</h2>
+            <p>Новая коллаборация с уникальным дизайном и премиальными материалами.</p>
+            <a href="#" class="read-more">Подробнее</a>
+          </div>
+        </article>
+        <!-- Другие новости -->
       </div>
     </section>
   </main>

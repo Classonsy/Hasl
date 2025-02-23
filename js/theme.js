@@ -18,4 +18,19 @@ themeToggle.addEventListener('click', () => {
     body.classList.add('dark-theme');
     localStorage.setItem('theme', 'dark-theme');
   }
+  
+  // Add animation for news cards in dark mode
+  if (body.classList.contains('dark-theme')) {
+    gsap.to('.news-card', {
+      backgroundColor: 'var(--gray)',
+      color: 'var(--white)',
+      duration: 0.3
+    });
+  } else {
+    gsap.to('.news-card', {
+      backgroundColor: 'var(--white)', 
+      color: 'var(--black)',
+      duration: 0.3
+    });
+  }
 });
